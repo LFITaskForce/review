@@ -61,7 +61,7 @@
 
 <script type="text/javascript">
   var nodes = [
-    { id: 000, label: '<b>Data</b>', x: 0, y: -300, group: 'data', font:{color: "#c3e5e1"}},
+    { id: 000, label: '<b>Data</b>', x: 0, y: -300, group: 'data'},
     { id: 110, widthConstraint: { minimum: 120 }, label: '<b>Summary Statistics</b>', x: -100, y: -200, group: 'summary' },
     { id: 211, widthConstraint: { minimum: 120 }, label: '<b>Likelihood</b>', x: -200, y: -100, group: 'target' },
     { id: 212, widthConstraint: { minimum: 120 }, label: '<b>Likelihood Ratio</b>', x: 0, y: -100 , group: 'target'},
@@ -117,7 +117,7 @@
     },
     nodes: {
       font: {size:16,  multi: "html", face: "sans-serif",
-             color:'#4d5863'} ,
+             color:'#f0fbf5'} ,
       shadow:true,
       shape: 'box',
       margin: 10,
@@ -129,12 +129,10 @@
       enabled: false
     },
     groups: {
-            data: {color:'rgb(33, 137, 126)'},
-            summary: {color:'rgb(59, 169, 156)',
-                      font:{color: "#f0fbf5"}},
-            target: {color:'rgb(105, 209, 197)'},
-            yield: {color:'rgb(145, 249, 229)',
-                    font:{color:'#737e8a'}},
+            data: {color:'#262c56'},
+            summary: {color:'#365b7f'},
+            target: {color:'#56898a'},
+            yield: {color:'#a5cfb9', font:{color:"#343a40"}},
         }
   };
   var network = new vis.Network(container, data, options);
