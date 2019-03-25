@@ -1,0 +1,113 @@
+
+<!doctype html>
+<html>
+<head>
+  <title>LFI Flow Chart</title>
+
+  <script type="text/javascript" src="bower_components/vis/dist/vis.js"></script>
+  <link href="bower_components/vis/dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    #mynetwork {
+      width: 600px;
+      height: 400px;
+      border: 1px solid lightgray;
+    }
+    code {
+      font-size: 14px;
+      background: #dddddd;
+    }
+    p {
+      max-width: 600px;
+    }
+    .indented {
+      margin-left: 30px;
+    }
+    .sep {
+      height: 1px;
+      width: 35%;
+      margin-left: 40px;
+      background-color: #dddddd;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+  var nodes = [
+    { id: 000, label: 'Data', x: 0, y: -300, group: 0 },
+    { id: 110, widthConstraint: { minimum: 120 }, label: 'Summary Statistics', x: -100, y: -200, group: 1 },
+    { id: 211, widthConstraint: { minimum: 120 }, label: 'Likelihood', x: -200, y: -100, group: 2 },
+    { id: 212, widthConstraint: { minimum: 120 }, label: 'Likelihood Ratio', x: 0, y: -100 , group: 2},
+    { id: 213, widthConstraint: { minimum: 120 }, label: 'Posterior', x: 200, y: -100 , group: 2},
+    { id: 310, widthConstraint: { minimum: 120 }, label: 'Point Estimates', x: -300, y: 100 , group: 3},
+    { id: 311, widthConstraint: { minimum: 120 }, label: 'Posterior Tractable', x: -100, y: 100 , group: 3},
+    { id: 312, widthConstraint: { minimum: 120 }, label: 'Posterior Samples', x: 100, y: 100 , group: 3},
+    { id: 313, widthConstraint: { minimum: 120 }, label: 'Confidence Intervals', x: 300, y: 100 , group: 3},
+      ];
+
+  var edges = [
+    { from: 000, to: 110, arrows:'to'},
+
+    { from: 000, to: 211, arrows:'to'},
+    { from: 000, to: 212, arrows:'to'},
+    { from: 000, to: 213, arrows:'to'},
+
+    { from: 110, to: 211, arrows:'to'},
+    { from: 110, to: 212, arrows:'to'},
+    { from: 110, to: 213, arrows:'to'},
+
+    { from: 211, to: 310, arrows:'to'},
+    { from: 211, to: 311, arrows:'to'},
+    { from: 211, to: 312, arrows:'to'},
+    { from: 211, to: 313, arrows:'to'},
+
+    { from: 212, to: 310, arrows:'to'},
+    { from: 212, to: 311, arrows:'to'},
+    { from: 212, to: 312, arrows:'to'},
+    { from: 212, to: 313, arrows:'to'},
+
+    { from: 213, to: 310, arrows:'to'},
+    { from: 213, to: 311, arrows:'to'},
+    { from: 213, to: 312, arrows:'to'},
+    { from: 213, to: 313, arrows:'to'},
+
+    ];
+
+  var container = document.getElementById('mynetwork');
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+    edges: {
+      font: {
+        size: 12
+      },
+      width: 2,
+      shadow:true,
+      widthConstraint: {
+        maximum: 90
+      }
+    },
+    nodes: {
+      shadow:true,
+      shape: 'box',
+      margin: 10,
+      widthConstraint: {
+        maximum: 200
+      }
+    },
+    physics: {
+      enabled: false
+    }
+  };
+  var network = new vis.Network(container, data, options);
+</script>
+
+</body>
+</html>
